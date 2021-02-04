@@ -39,7 +39,7 @@ class LinkedList:
     # traverse linked list
     def traverse(self):
         if self.head is None:
-            print('Empty linked List!')
+            print('Empty Linked List!')
             return
 
         current = self.head
@@ -47,17 +47,40 @@ class LinkedList:
             print(current.data, end=' ')
             current = current.next
 
+    # add to middle of the linked list
+    def addMiddle(self, middleData, data):
+        if self.head is None:
+            self.head = Node(data)
+            self.size += 1
+            return
+
+        current = self.head
+        while current is not None:
+            if current.data == middleData:
+                newNode = Node(data)
+                newNode.next = current.next
+                current.next = newNode
+                self.size += 1
+                return
+            current = current.next
+
+        print("No such data {} found!!".format(middleData))
+
 list = LinkedList()
 
-for r in ['c', 'b', 'a']:
+for r in [3, 2, 1]:
     list.addFirst(r)
 
 print('Linked List size: {}'.format(list.getSize()))
 list.traverse()
 
-for r in ['d', 'e', 'f']:
+for r in [5, 6, 7]:
     list.addLast(r)
 print('\nLinked List size: {}'.format(list.getSize()))
 
 print()
+list.traverse()
+
+list.addMiddle(3, 4)
+print("\nAfter insertin at the middle ")
 list.traverse()
