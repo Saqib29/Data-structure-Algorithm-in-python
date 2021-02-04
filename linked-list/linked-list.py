@@ -66,6 +66,59 @@ class LinkedList:
 
         print("No such data {} found!!".format(middleData))
 
+    # remove the last element
+    def removeFromLast(self):
+        if self.head is None:
+            print("Linked List is empty! Nothing to remove.")
+            return
+        elif self.head.next is Node:
+            self.head = None
+            self.size -= 1
+            return
+
+        current = self.head
+        while current.next.next is not None:
+            current = current.next
+
+        current.next = None
+        return
+
+
+    # remove the first element
+    def removeFromFirst(self):
+        if self.head is None:
+            print("Linked List is Empty! Nothing to remove")
+            return
+
+        self.head = self.head.next
+        self.size -= 1
+
+
+    # remove specific element
+    def removeSpecificData(self, removeKey):
+        if self.head is None:
+            if self.head.data == removeKey:
+                self.head = None
+                return
+            print("Nothing to remove! Linked List is empty!")
+            return
+
+        current = self.head
+        while current is not None:
+            if current.data == removeKey:
+                break
+            prev = current
+            current = current.next
+
+        if prev.next is None:
+            print("\n{} not found to remove!".format(removeKey))
+        elif prev.next.data == removeKey:
+            prev.next = current.next
+        
+
+
+
+
 list = LinkedList()
 
 for r in [3, 2, 1]:
@@ -84,3 +137,17 @@ list.traverse()
 list.addMiddle(3, 4)
 print("\nAfter insertin at the middle ")
 list.traverse()
+
+list.removeFromLast()
+print("\nAfter remove the last element")
+list.traverse()
+
+list.removeFromFirst()
+print("\nAfter remove first element")
+list.traverse()
+
+list.removeSpecificData(3)
+print("\nAfter deleting 3 ")
+list.traverse()
+
+list.removeSpecificData(3)
