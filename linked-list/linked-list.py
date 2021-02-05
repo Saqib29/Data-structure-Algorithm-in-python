@@ -81,6 +81,7 @@ class LinkedList:
             current = current.next
 
         current.next = None
+        self.size -= 1
         return
 
 
@@ -99,6 +100,7 @@ class LinkedList:
         if self.head is None:
             if self.head.data == removeKey:
                 self.head = None
+                self.size -= 1
                 return
             print("Nothing to remove! Linked List is empty!")
             return
@@ -114,6 +116,7 @@ class LinkedList:
             print("\n{} not found to remove!".format(removeKey))
         elif prev.next.data == removeKey:
             prev.next = current.next
+            self.size -= 1
         
 
 
@@ -151,3 +154,4 @@ print("\nAfter deleting 3 ")
 list.traverse()
 
 list.removeSpecificData(3)
+print(list.getSize())
