@@ -102,8 +102,7 @@ class LinkedList:
                 self.head = None
                 self.size -= 1
                 return
-            print("Nothing to remove! Linked List is empty!")
-            return
+            
 
         current = self.head
         while current is not None:
@@ -117,6 +116,8 @@ class LinkedList:
         elif prev.next.data == removeKey:
             prev.next = current.next
             self.size -= 1
+        else:
+            print("Nothing to remove! Linked List is empty!")
         
 
 
