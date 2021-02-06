@@ -71,7 +71,7 @@ class LinkedList:
         if self.head is None:
             print("Linked List is empty! Nothing to remove.")
             return
-        elif self.head.next is Node:
+        elif self.head.next is None:
             self.head = None
             self.size -= 1
             return
@@ -97,13 +97,12 @@ class LinkedList:
 
     # remove specific element
     def removeSpecificData(self, removeKey):
-        if self.head is None:
+        if self.head is not None:
             if self.head.data == removeKey:
                 self.head = None
                 self.size -= 1
                 return
-            print("Nothing to remove! Linked List is empty!")
-            return
+            
 
         current = self.head
         while current is not None:
@@ -117,6 +116,8 @@ class LinkedList:
         elif prev.next.data == removeKey:
             prev.next = current.next
             self.size -= 1
+        else:
+            print("Nothing to remove! Linked List is empty!")
         
 
 
