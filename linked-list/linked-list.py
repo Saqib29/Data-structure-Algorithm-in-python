@@ -97,7 +97,7 @@ class LinkedList:
 
     # remove specific element
     def removeSpecificData(self, removeKey):
-        if self.head is None:
+        if self.head is not None:
             if self.head.data == removeKey:
                 self.head = None
                 self.size -= 1
