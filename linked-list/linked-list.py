@@ -71,7 +71,7 @@ class LinkedList:
         if self.head is None:
             print("Linked List is empty! Nothing to remove.")
             return
-        elif self.head.next is Node:
+        elif self.head.next is None:
             self.head = None
             self.size -= 1
             return
