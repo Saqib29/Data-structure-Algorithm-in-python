@@ -138,6 +138,96 @@ class DoublyLinkedList:
         print()
 
 
+    # Delete operations
+
+    # Delete Node from front
+    def deleteFront(self):
+        if self.head is None:
+            print("Linked List is Empty! Nothing to be deleted")
+            return
+
+        deleteNode = self.head
+        if deleteNode.next is not None:
+            deleteNode.next.prev = None
+        else:
+            self.tail = deleteNode.prev
+        self.head = deleteNode.next
+        self.size -= 1
+
+        deleteNode = None
+
+    # delete Node from last
+    def deleteLast(self):
+        if self.head is None:
+            print("Linked List is empty! nothing to be deleted")
+            return
+
+        currentNode = self.head
+        while currentNode.next is not None:
+            currentNode = currentNode.next
+        if currentNode.prev is None:
+            self.head = None
+            self.tail = None
+
+            self.szie -= 1
+            currentNode = None
+        else:
+            currentNode.prev.next = None
+            self.tail = currentNode.prev
+            currentNode = None
+            self.size -= 1
+
+    # Delete Node after the given key
+    def deleteAfter(self, key):
+        if self.head is None:
+            print("the key doesn't exist in an Empty Linked List")
+            return
+
+        currentNode = self.head
+        while currentNode is not None:
+            if currentNode.data == key:
+                deleteNode = currentNode.next
+                if deleteNode is not None:
+                    currentNode.next = deleteNode.next
+                    if deleteNode.next is not None:
+                        deleteNode.next.prev = currentNode
+                    deleteNode = None
+                    self.size -= 1
+                    self.tail = currentNode
+                    return
+                else:
+                    print("Not found the next node to be deleted")
+                    return
+            currentNode = currentNode.next
+        print("The key doesn't found!")
+                    
+    # delete node before the given key
+    def deleteBefore(self, key):
+        if self.head is None:
+            print("Linked List is empty! nothing to be deleted")
+            return
+        
+        currentNode = self.head
+        while currentNode is not None:
+            if currentNode.data == key:
+                if currentNode.prev is None:
+                    print("No node exists before Node {}".format(key))
+                    return
+                deleteNode = currentNode.prev
+
+                currentNode.prev = deleteNode.prev
+                if deleteNode.prev is not None:
+                    deleteNode.prev.next = deleteNode.next
+                else:
+                    self.head = deleteNode.next
+                    
+                deleteNode = None
+                self.size -= 1
+                return
+            currentNode = currentNode.next
+        print("No such key {} found!".format(key))
+
+
 if __name__ == "__main__":
     list = DoublyLinkedList()
 
@@ -178,3 +268,28 @@ if __name__ == "__main__":
 
     print("Traverse Backward")
     list.traverseBackward()
+
+    list.deleteFront()
+    list.traverseForward()
+
+    list.deleteLast()
+    list.traverseForward()
+
+    list.deleteAfter(5)
+    list.traverseForward()
+
+    list.deleteAfter(2)
+    list.traverseForward()
+
+    list.deleteAfter(1)
+    list.traverseForward()
+    print("Size {}".format(list.size))
+
+    list.deleteBefore(2)
+
+    list.deleteBefore(5)
+    list.traverseForward()
+
+    print("Size {}".format(list.size))
+
+    
