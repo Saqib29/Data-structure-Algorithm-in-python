@@ -228,6 +228,32 @@ class DoublyLinkedList:
         print("No such key {} found!".format(key))
 
 
+    # delete specific data
+    def deleteSpecific(self, key):
+        
+        currentNode = self.head
+        while currentNode is not None:
+            if currentNode.data == key:
+                if currentNode.next is not None:
+                    currentNode.next.prev = currentNode.prev
+                else:
+                    self.tail = currentNode.prev
+
+                if currentNode.prev is None:
+                    self.head = currentNode.next
+                else:
+                    currentNode.prev.next = currentNode.next
+
+                currentNode = None
+                self.size -= 1
+
+                return
+
+            currentNode = currentNode.next
+
+        print("No key {} found to delete".format(key))
+
+
 if __name__ == "__main__":
     list = DoublyLinkedList()
 
@@ -292,4 +318,24 @@ if __name__ == "__main__":
 
     print("Size {}".format(list.size))
 
+    #print("check this")
+    list.deleteSpecific(3)
+
+    #print("head {}".format(list.head.next.data))
+
+    list.addBefore(5, 3)
+    list.traverseForward()
+    list.addAfter(3, 4)
+    list.traverseForward()
+    list.addFront(1)
+    list.traverseForward()
     
+
+    list.deleteSpecific(3)
+    list.traverseForward()
+
+    list.deleteSpecific(4)
+    list.traverseForward()
+
+    list.deleteSpecific(5)
+    list.traverseForward()
