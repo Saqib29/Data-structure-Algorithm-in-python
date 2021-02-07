@@ -9,6 +9,7 @@ class Node:
 class DoublyLinkedList:
     def __init__(self):
         self.head = None
+        self.tail = None
         self.size = 0
 
     def __size__(self):
@@ -20,6 +21,7 @@ class DoublyLinkedList:
 
         if self.head is None:
             self.head = newNode
+            self.tail = newNode
             self.size += 1
             return
 
@@ -41,13 +43,18 @@ class DoublyLinkedList:
                 newNode = Node(data)
 
                 newNode.next = currentNode.next
-                newNode.next.prev = newNode
                 newNode.prev = currentNode
+
+                if currentNode.next is not None:
+                    currentNode.next.prev = newNode
+                else:
+                    self.tail = newNode
+
                 currentNode.next = newNode
 
                 self.size += 1
                 return
-            currentNode = currentnode.next
+            currentNode = currentNode.next
 
         print("Ther is no such key in the Linked List")
 
@@ -87,11 +94,15 @@ class DoublyLinkedList:
         
         if self.head is None:
             self.head = newNode
+            self.tail = newNode
             self.size += 1
             return
         elif self.head.next is None:
             self.head.next = newNode
             newNode.prev = self.head
+
+            self.tail = newNode
+            
             self.size += 1
             return
 
@@ -101,6 +112,9 @@ class DoublyLinkedList:
 
         currentNode.next = newNode
         newNode.prev = currentNode
+
+        self.tail = newNode
+        
         self.size += 1
 
 
@@ -114,10 +128,23 @@ class DoublyLinkedList:
         print()
 
     # traverse doubly linked lisr backward
+    def traverseBackward(self):
+        temp = self.tail
+
+        while temp is not None:
+            print(temp.data, end=" ")
+            temp = temp.prev
+
+        print()
 
 
 if __name__ == "__main__":
     list = DoublyLinkedList()
+
+    list.addAfter(6, 7)
+    print("Size {}".format(list.size))
+
+    list.addBefore(1, 0)
 
     list.addEnd(5)
     print("Size " + str(list.size))
@@ -141,4 +168,13 @@ if __name__ == "__main__":
     list.addBefore(2, 1)
     list.traverseForward()
     print("Size {}".format(list.size))
+
+    list.addAfter(9, 10)
+    print("size {}".format(list.size))
     
+    list.addBefore(9, 10)
+    print("Traverse Forward")
+    list.traverseForward()
+
+    print("Traverse Backward")
+    list.traverseBackward()
