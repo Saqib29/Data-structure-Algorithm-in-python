@@ -88,8 +88,94 @@ class CircularLinkedList:
             if currentNode == self.last.next:
                 break
             
-        
 
+    ## Delete part from circular linked list
+
+    # remove from Begining
+    def removeFromFront(self):
+        if self.last is None:
+            print("The Linked list is empty!")
+            return
+        if self.size == 1:
+            self.last = None
+            self.size -= 1
+            return
+
+        self.last.next = self.last.next.next
+        self.size -= 1
+
+        return
+
+    # remove from end
+    def removeFromEnd(self):
+        if self.last is None:
+            print("The Linked list is empty!")
+            return
+
+        if self.size == 1:
+            self.size = None
+            self.size -= 1
+            return
+
+        currentNode = self.last.next
+        while currentNode:
+            if currentNode.next == self.last:
+                break
+            currentNode = currentNode.next
+
+        currentNode.next = self.last.next
+        self.last = currentNode
+        self.size -= 1
+        return
+
+    # remove the specific node
+    def removeSpecific(self, key):
+        if self.last is None:
+            print("The Linked list is empty!")
+            return
+
+        if self.size == 1 and self.last.data == key:
+            self.last = None
+            self.size -= 1
+            return
+
+        currentNode = self.last
+        while currentNode:
+            if currentNode.next.data == key:
+
+                if currentNode.next == self.last:
+                    self.last = currentNode
+                currentNode.next = currentNode.next.next
+                self.size -= 1
+                return
+            
+            currentNode = currentNode.next
+            if currentNode == self.last:
+                print("No such key {} found in this linked list".format(key))
+                return
+
+    # remove node after the fiven data
+    def removeAfter(self, key):
+        if self.last is None:
+            print("The list is empty!")
+            return
+        if self.size == 1 and self.last.data == key:
+            print("No data exists after the {} key here!".format(key))
+            return
+
+        currentNode = self.last.next
+        while currentNode:
+            if currentNode.data == key:
+                if currentNode.next == self.last:
+                    self.last = currentNode
+                currentNode.next = currentNode.next.next
+                self.size -= 1
+                return
+            currentnode = currentNode.next
+            if currentNode == self.last.next:
+                print("Nothing to be deleted after {}".format(key))
+                return
+        
         
 
 if __name__ == "__main__":
@@ -117,4 +203,28 @@ if __name__ == "__main__":
     print()
 
     print("list size - {}".format(l.size))
-    
+
+    l.removeFromFront()
+    l.traverse()
+    print()
+    print("list size - {}".format(l.size))
+
+    l.removeFromEnd()
+    l.traverse()
+    print()
+    print("list size - {}".format(l.size))
+
+    l.removeSpecific(3)
+    l.traverse()
+    print()
+    print("list size - {}".format(l.size))
+
+    l.removeAfter(4)
+    l.traverse()
+    print()
+    print("list size - {}".format(l.size))
+
+    l.removeAfter(2)
+    l.traverse()
+    print()
+    print("list size - {}".format(l.size))
