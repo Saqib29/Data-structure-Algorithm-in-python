@@ -76,7 +76,7 @@ class CircularLinkedList:
 
     def traverse(self):
         if self.last is None:
-            print("Circulart linked list is empty!")
+            print("Circular linked list is empty!")
             return
         
         currentNode = self.last.next
