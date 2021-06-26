@@ -106,13 +106,9 @@ class DoublyLinkedList:
             self.size += 1
             return
 
-        currentNode = self.head
-        while currentNode.next is not None:
-            currentNode = currentNode.next
 
-        currentNode.next = newNode
-        newNode.prev = currentNode
-
+        self.tail.next = newNode
+        newNode.prev = self.tail
         self.tail = newNode
         
         self.size += 1
