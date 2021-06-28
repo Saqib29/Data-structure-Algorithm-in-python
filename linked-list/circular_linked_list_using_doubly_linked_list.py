@@ -8,6 +8,9 @@ class CircularLinkedList:
     def __init__(self):
         self.last = None
         self.size = 0
+
+    def __size__(self):
+        return self.size
     
     # add data to an empty linked list
     def addIfEmpty(self, data):
@@ -131,5 +134,9 @@ if __name__ == "__main__":
     l.addBegin(1)
     l.traverseForward()
     l.traverseBackward()
+
+    print(l.size)                                                           
+
+
 
     
