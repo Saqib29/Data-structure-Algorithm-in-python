@@ -146,6 +146,61 @@ class CircularLinkedList:
         self.size -= 1
         return
 
+    # remove data after the key 
+    def removeAfter(self, key):
+        if self.last is None:
+            print("The linked list is empty")
+            return
+        
+        if self.size == 1 and self.last.data == key:
+            print(f"No data exists after the {key} key here!")
+            return
+        
+        currentNode = self.last.next
+        while currentNode:
+            if currentNode.data == key:
+                
+                if currentNode.next == self.last:
+                    self.last = currentNode
+                
+                currentNode.next = currentNode.next.next
+                currentNode.next.prev = currentNode
+                self.size -= 1
+                return
+            
+            currentNode = currentNode.next
+            if currentNode == self.last.next:
+                print(f"Nothing to be deleted after {key}")
+                return
+        
+    # remove specific data provided
+    def removeSpecificData(self, item):
+        if self.last is None:
+            print(f"Linked list is empty")
+            return
+        
+        if self.size == 1 and self.last.data == item:
+            self.last = None
+            self.size -= 1
+            return
+        
+        currentNode = self.last
+        while currentNode:
+            if currentNode.next.data == item:
+                
+                if currentNode.next == self.last:
+                    self.last = currentNode
+                
+                currentNode.next = currentNode.next.next
+                currentNode.next.prev = currentNode
+                self.size -= 1
+                return
+            
+            currentNode = currentNode.next
+            if currentNode == self.last:
+                print(f"No such item {item} found in the linked list")
+                return
+
 
 if __name__ == "__main__":
 
@@ -176,4 +231,12 @@ if __name__ == "__main__":
     
     l.removeFromFront()
     l.traverseBackward()
+    print("linked list size -> " + str(l.size))                                                           
+
+    l.removeAfter(3)
+    l.traverseForward()
+    print("linked list size -> " + str(l.size))                                                           
+    
+    l.removeSpecificData(3)
+    l.traverseForward()
     print("linked list size -> " + str(l.size))                                                           
