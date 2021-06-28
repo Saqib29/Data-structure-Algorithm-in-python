@@ -11,4 +11,5 @@
 - [Singly Linked List](https://github.com/Saqib29/Data-structure-Algorithm-in-python/blob/master/linked-list/singly_linked_list.py "singly linked list")
 - [Doubly Linked List](https://github.com/Saqib29/Data-structure-Algorithm-in-python/blob/master/linked-list/doubly_linked_list.py "doubly linked list")
 - [Circular Linked List](# "circular linked list")
-  - [Circular Linked List - (using singly linked list)](https://github.com/Saqib29/Data-structure-Algorithm-in-python/blob/master/linked-list/circular_linked_list-using-singly_linked_list.py "circular linked list using singly list")
+  - [Circular Linked List - (using `singly` linked list)](https://github.com/Saqib29/Data-structure-Algorithm-in-python/blob/master/linked-list/circular_linked_list-using-singly_linked_list.py "circular linked list using singly list")
+  - [Circular Linked List - (using `doubly` linked list)](https://github.com/Saqib29/Data-structure-Algorithm-in-python/blob/master/linked-list/circular_linked_list_using_doubly_linked_list.py "circular linked list using doubly linked list")
