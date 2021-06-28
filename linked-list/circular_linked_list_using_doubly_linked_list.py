@@ -112,6 +112,39 @@ class CircularLinkedList:
                 break
         print()
 
+    # remove from front of the linked list
+    def removeFromFront(self):
+        if self.last is None:
+            print("Circular linked list is empty!")
+            return
+        
+        if self.size == 1:
+            self.last = None
+            self.size -= 1
+            return
+
+        self.last.next = self.last.next.next
+        self.last.next.prev = self.last
+        self.size -= 1
+        return
+
+    # remove from end of the linkes list 
+    def removeFromEnd(self):
+        if self.last is None:
+            print("Circular linked list is empty! nothing to remove!")
+            return
+        
+        if self.size == 1:
+            self.last = None
+            self.size -= 1
+            return
+        
+        prevNode = self.last.prev
+        prevNode.next = self.last.next
+        prevNode.next.prev = prevNode
+        self.last = prevNode
+        self.size -= 1
+        return
 
 
 if __name__ == "__main__":
@@ -135,8 +168,12 @@ if __name__ == "__main__":
     l.traverseForward()
     l.traverseBackward()
 
-    print(l.size)                                                           
+    print("linked list size -> " + str(l.size))                                                           
 
-
-
+    l.removeFromEnd()
+    l.traverseForward()
+    print("linked list size -> " + str(l.size))                                                           
     
+    l.removeFromFront()
+    l.traverseBackward()
+    print("linked list size -> " + str(l.size))                                                           
